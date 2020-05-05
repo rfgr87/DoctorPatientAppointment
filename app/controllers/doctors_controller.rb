@@ -13,14 +13,27 @@ class DoctorsController < ApplicationController
         end
     end
     
+    def index
+        if params[:doctor_id]
+          @appointments = Doctor.find(params[:doctor_id]).appointments
+        else
+          redirect_to '/'
+        end
+    end
+     
     def show
+        @patient = Patient.find(params[:id])
     end
 
     def update
         @doctor = Doctor.find(params[:id])
         @doctor.update(doctor_params)
         redirect_to post_path(@doctor)
-      end
+    end
+
+    def edit
+        @doctor = Doctor.find(params[:id])
+    end
     
     def logout
         session.delete :doctor_id
