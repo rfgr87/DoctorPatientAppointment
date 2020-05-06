@@ -1,6 +1,5 @@
 class DoctorsController < ApplicationController
     def new
-        @doctor = Doctor.new
     end
     
     def create
@@ -12,17 +11,27 @@ class DoctorsController < ApplicationController
           redirect_to '/'
         end
     end
+
+    def login
+        @doctor = Doctor.find(email: params[:doctor][:email])
+        if @doctor.id && @doctor.authenticate(params[:doctor][:password])
+            session[:doctor_id] = @doctor.id
+            redirect_to 'show'
+        else
+            redirect_to '/'
+        end
+    end
     
     def index
-        if params[:doctor_id]
-          @appointments = Doctor.find(params[:doctor_id]).appointments
+        if params[:id]
+          @appointments = Doctor.find(params[:id]).appointments
         else
           redirect_to '/'
         end
     end
      
     def show
-        @patient = Patient.find(params[:id])
+        @doctor = Doctor.find(params[:id])
     end
 
     def update

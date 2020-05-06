@@ -1,4 +1,3 @@
-<h1><%= @doctor.name %></h1><br>
 <p>Appointments:</p>
 <% @doctor.appointments.each do |appointment| %>
   <div><%= Patient.find(appointment.patient_id)%><br>

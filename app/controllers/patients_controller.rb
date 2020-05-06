@@ -12,14 +12,6 @@ class PatientsController < ApplicationController
           redirect_to '/'
         end
     end
-
-    def index
-        if params[:patient_id]
-          @appointments = Patient.find(params[:patient_id]).appointments
-        else
-          redirect_to '/'
-        end
-    end
      
     def show
         @patient = Patient.find(params[:id])
@@ -31,6 +23,24 @@ class PatientsController < ApplicationController
         redirect_to post_path(@patient)
     end
     
+    def login
+        @patient = Patient.find(email: params[:patient][:email])
+        if @patient.id && @patient.authenticate(params[:patient][:password])
+            session[:patient_id] = @patient.id
+            redirect_to 'show'
+        else
+            redirect_to '/'
+        end
+    end
+    
+    def index
+        if session[:patient_id]
+          @appointments = Patient.find(session[:patient_id]).appointments
+        else
+          redirect_to '/'
+        end
+    end
+
     def edit
         @doctor = Doctor.find(params[:id])
     end
