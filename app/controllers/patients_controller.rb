@@ -24,14 +24,24 @@ class PatientsController < ApplicationController
     end
     
     def login
-        @patient = Patient.find(email: params[:patient][:email])
-        if @patient.id && @patient.authenticate(params[:patient][:password])
-            session[:patient_id] = @patient.id
-            redirect_to 'show'
-        else
-            redirect_to '/'
-        end
+        @patient = Patient.new
+        # @doctor = Doctor.find(email: params[:doctor][:email])
+        # if @doctor.id && @doctor.authenticate(params[:doctor][:password])
+        #     session[:doctor_id] = @doctor.id
+        # else
+        #     redirect_to '/'
+        # end
     end
+
+    # def login
+    #     @patient = Patient.find(email: params[:patient][:email])
+    #     if @patient.id && @patient.authenticate(params[:patient][:password])
+    #         session[:patient_id] = @patient.id
+    #         redirect_to 'show'
+    #     else
+    #         redirect_to '/'
+    #     end
+    # end
     
     def index
         if session[:patient_id]
@@ -53,6 +63,6 @@ class PatientsController < ApplicationController
     private
     
     def patient_params
-        params.require(:patient).permit(:name, , :email, :password, :password_confirmation)
+        params.require(:patient).permit(:name, :email, :password, :password_confirmation)
     end
 end
