@@ -1,0 +1,12 @@
+<h1>Prescription Form for Patient <%=@appointment.patient.name%></h1>
+<%= form_tag("/appointments/#{@appointment.id}/prescription") do %>
+<div>
+<%= hidden_field :appointment_id, value: @appointment.id %>
+<div class="field">
+<%= label_tag :content %><br>
+<%= text_area_tag :content %>
+</div>
+ <div class="actions">
+  <%= submit_tag "Add Prescription" %>
+</div>
+<% end %>

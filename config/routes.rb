@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get '/patients/login', to: 'patients#login'
   post '/patients/login', to: 'patients#create_session'
   get '/patients/logout', to: 'patients#logout'
+
+  get '/appointments/:id/prescription', to: 'appointments#prescription'
+  post '/appointments/:id/prescription', to: 'appointments#create_prescription'
   
   resources :doctors, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :patients, only: [:new, :create, :show, :edit, :update, :destroy]

@@ -6,4 +6,11 @@
 <%= @appointment.doctor_prescription%>
 <%else%>
 <h3>There are no prescriptions yet</h3>
-<%end%>
+<%end%><br>
+
+<% if !session[:doctor_id].nil?%>
+<%= link_to "Add Prescription", "/appointments/#{@appointment.id}/prescription"%><br>
+<%= link_to "Doctor's Homepage", "/doctors/show"%><br>
+
+<% end%>
+

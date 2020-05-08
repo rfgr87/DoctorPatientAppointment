@@ -45,6 +45,20 @@ class AppointmentsController < ApplicationController
     def edit
         @appointment = Appointment.find(params[:appointment_id])
     end
+
+    def prescription
+        @appointment = Doctor.find(doctor_id).appointments.last
+    end
+
+    def create_prescription
+        binding.pry
+        @appointment = Appointment.find(params[:id].to_i)
+        # @patient = Appointment.find(id: params[:id]).patient 
+        # @doctor = Appointment.find(id: params[:id]).doctor
+        @appointment.doctor_prescription = params[:content]
+        @appointment.save
+        render :show
+    end
         
     private
         
