@@ -42,9 +42,9 @@ class DoctorsController < ApplicationController
 
     def patients
         @doctor = Doctor.find(doctor_id)
-        @patients_without_appointment = Patient.all.select do |patient|
-        patient.appointments.nil?
-        end
+        @p = Patient.all.select do |patient|
+            patient.appointments.empty?
+            end
     end
 
 

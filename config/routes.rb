@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/doctors/login', to: 'doctors#login'
   post '/doctors/login', to: 'doctors#create_session'
   get '/doctors/logout', to: 'doctors#logout'
-  get '/doctors/:id/patients', to: 'doctors#patients'
+  get '/doctors/:id/patients', to: 'patients#index'
    
   get '/patients/login', to: 'patients#login'
   post '/patients/login', to: 'patients#create_session'
@@ -20,11 +20,11 @@ Rails.application.routes.draw do
   # resources :doctors
 
   resources :doctors, only: [:show] do
-    resources :appointments, only: [:show, :index]
+    resources :appointments, only: [:new, :show, :index]
   end
 
-  resources :patients, only: [:show] do
-    resources :appointments, only: [:show, :index]
+  resources :doctors, only: [:show] do
+    resources :patients, only: [:index, :show]
   end
 
   

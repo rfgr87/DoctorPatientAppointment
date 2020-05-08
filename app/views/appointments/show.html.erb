@@ -1,7 +1,7 @@
 <h3>Appointment Info<h3>
-<%= @appointment.entry_date_formatted%><br>
-<%= @appointment.doctor%><br>
-<%= @appointment.patient%>
+<%= @appointment.date.strftime '%d.%m.%Y %H:%M:%S'%><br>
+<%= @appointment.doctor.name%><br>
+<%= @appointment.patient.name%><br>
 <% if @appointment.doctor_prescription%>
 <%= @appointment.doctor_prescription%>
 <%else%>

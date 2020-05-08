@@ -1,20 +1,22 @@
+require 'pry'
 class AppointmentsController < ApplicationController
 
     def new
         @appointment = Appointment.new
         @doctor = Doctor.find(doctor_id)
         @patients = Patient.all.select do |patient|
-        patient.appointments.nil?
+        patient.appointments.empty?
         end
     end
         
     def create
-        @doctor = Doctor.find_by(name: params[:doctor_id])
-        @patient = Patient.find_by(name: params[:patient_name])
-        @appointment = Appointment.create(appointment_params)
-        @doctor.appointments << @appointment
-        @patient.appointments << @appointment
-        if @appointment.save && @doctor.save && @patient.save
+        @doctor = Doctor.find(doctor_id)
+        #@patient = Patient.find(params[:appointment][:patient_id])
+        date = DateTime.new(params[:appointment]["date(1i)"].to_i,params[:appointment]["date(2i)"].to_i,
+        params[:appointment]["date(3i)"].to_i, params[:appointment]["date(4i)"].to_i,
+        params[:appointment]["date(5i)"].to_i)
+        @appointment = Appointment.create(doctor_id: @doctor.id, patient_id: params[:appointment][:patient_id], date: date)
+        if @appointment.save
             render :show
         else
             redirect_to '/'
@@ -31,6 +33,7 @@ class AppointmentsController < ApplicationController
     end
          
     def show
+        @appointment = Appointment.find(params[:id])
     end
     
     def update

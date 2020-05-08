@@ -1,10 +1,16 @@
 <h1><%= @patient.name %></h1>
 <p>Appointments:</p>
 <% @patient.appointments.each do |appointment| %>
-  <div><%= Doctor.find(appointment.doctor_id)%><br>
-  <%= link_to appointment.date, patient_appointment_path(appointment.id) %><br>
+  <div><%= Doctor.find(appointment.doctor_id).name %><br>
+  <%= link_to appointment.date, appointment_path(appointment.id) %><br>
   </div>
 <% end %><br>
 
+<% if !session[:patient_id].nil? %>
 <%= link_to "Edit Patient's Info", "/patients/:id/edit"%><br>
 <%= link_to "Logout", "/patients/logout"%><br>
+<%end%>
+
+<% if !session[:doctor_id].nil?%>
+<%= link_to "Back to Home Page", "/doctors/show"%>
+<% end%>

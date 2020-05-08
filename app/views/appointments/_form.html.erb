@@ -1,12 +1,9 @@
 <%= form_for @appointment do |f| %>
-  <%= f.datetime_select :date %>
-  <%= f.label :doctor_name %>
-  <%= f.text_field :doctor %>
-  <%= f.collection_select :patient, Patient.all, :id, :name %>
-  
-  <%= f.collection_check_boxes :patient, @patients, :id, :name %>
-  <%= f.fields_for :patients, @appointment.patients.build do |patients_fields| %>
-    <%= patients_fields.text_field :name %>
-  <% end %>
+  <%= f.label :date %><br>
+  <%= f.datetime_select :date %><br>
+  <%= f.label :doctor_name %><br>
+  <h3> <%= @doctor.name%><br>
+  <%= f.collection_select :patient_id, @patients, :id, :name %><br>
+  <%# <%= f.collection_check_boxes :patient, @patients, :id, :name %><br>
   <%= f.submit %>
 <% end %>

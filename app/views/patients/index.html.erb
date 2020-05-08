@@ -1,6 +1,13 @@
-<p>Appointments:</p>
-<% @patient.appointments.each do |appointment| %>
-  <div><%= Doctor.find(appointment.doctor_id)%><br>
-  <%= link_to appointment.date, patient_appointment_path(appointment.id) %><br>
+<h3> <%= @doctor.name%>'s Patients<br>
+<% @doctor.patients.each do |patient| %>
+  <div><%= link_to patient.name, patient_path(patient.id) %><br>
   </div>
-<% end %>
+<% end %><br>
+
+<h3>Patients without appointment<h3>
+<% @p.each do |patient|%>
+<%= patient.name%><br>
+<%end%><br>
+
+<h3>Create an appointment for a patient<h3><br>
+<%= link_to "New Appointment", "/appointments/new"%>

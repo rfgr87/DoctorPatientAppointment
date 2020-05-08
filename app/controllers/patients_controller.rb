@@ -37,10 +37,9 @@ class PatientsController < ApplicationController
     end
     
     def index
-        if session[:patient_id]
-          @appointments = Patient.find(session[:patient_id]).appointments
-        else
-          redirect_to '/'
+        @doctor = Doctor.find(doctor_id)
+        @p = Patient.all.select do |patient|
+            patient.appointments.empty?
         end
     end
 

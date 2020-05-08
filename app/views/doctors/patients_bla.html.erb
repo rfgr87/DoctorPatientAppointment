@@ -2,10 +2,10 @@
 <% @doctor.patients.each do |patient| %>
   <div><%= link_to patient.name, doctor_patient_path(patient.id) %><br>
   </div>
-<% end %>
+<% end %><br>
 
 <h3>Patients without appointment<h3>
-<% @patients_without_appointment.each do |patient|%>
+<% @p.each do |patient|%>
 <%= patient.name%><br>
 <%end%><br>
 
