@@ -4,4 +4,7 @@
   <div><%= Doctor.find(appointment.doctor_id)%><br>
   <%= link_to appointment.date, patient_appointment_path(appointment.id) %><br>
   </div>
-<% end %>
+<% end %><br>
+
+<%= link_to "Edit Patient's Info", "/patients/:id/edit"%><br>
+<%= link_to "Logout", "/patients/logout"%><br>

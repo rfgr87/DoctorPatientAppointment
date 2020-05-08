@@ -3,6 +3,8 @@ class Patient < ApplicationRecord
     
     has_many :appointments
     has_many :doctors, through: :appointments
+    has_many :complains, through: :appointments
+
     validates :name, presence: true
     validates :email, presence: true
     validates :email, uniqueness: true

@@ -1,3 +1,5 @@
+require 'pry'
+
 class DoctorsController < ApplicationController
     def new
         @doctor = Doctor.new
@@ -14,14 +16,16 @@ class DoctorsController < ApplicationController
     end
 
     def login
-        @doctor = Doctor.new
-        # redirect_to '/doctors/login'
-        # @doctor = Doctor.find(email: params[:doctor][:email])
-        # if @doctor.id && @doctor.authenticate(params[:doctor][:password])
-        #     session[:doctor_id] = @doctor.id
-        # else
-        #     redirect_to '/'
-        # end
+    end
+
+    def create_session 
+        @doctor = Doctor.find_by(email: params[:email])
+        if @doctor.id && @doctor.authenticate(params[:password])
+            session[:doctor_id] = @doctor.id
+            render :show
+        else
+            redirect_to '/'
+        end
     end
     
     def index
@@ -32,18 +36,27 @@ class DoctorsController < ApplicationController
         end
     end
      
-    # def show
-    #     @doctor = Doctor.find_by(email: params[:doctor][:email])
-    # end
+    def show
+        @doctor = Doctor.find(doctor_id)
+    end
+
+    def patients
+        @doctor = Doctor.find(doctor_id)
+        @patients_without_appointment = Patient.all.select do |patient|
+        patient.appointments.nil?
+        end
+    end
+
+
 
     def update
         @doctor = Doctor.find(params[:id])
         @doctor.update(doctor_params)
-        redirect_to post_path(@doctor)
+        render :show
     end
 
     def edit
-        @doctor = Doctor.find(params[:id])
+        @doctor = Doctor.find(doctor_id)
     end
     
     def logout
@@ -51,10 +64,5 @@ class DoctorsController < ApplicationController
         redirect_to '/'
     end
 
-    private
-    
-    def doctor_params
-        params.require(:doctor).permit(:name, :email, :password, :password_confirmation)
-    end
 
 end

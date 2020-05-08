@@ -1,7 +1,11 @@
 <h1><%= @doctor.name %></h1><br>
 <p>Appointments:</p>
 <% @doctor.appointments.each do |appointment| %>
-  <div><%= Patient.find(appointment.patient_id)%><br>
+  <div><%= appointment.patient.name %><br>
   <%= link_to appointment.date, doctor_appointment_path(appointment.id) %><br>
   </div>
 <% end %>
+
+<%= link_to "Edit Doctor's Info", "/doctors/:id/edit"%><br>
+<%= link_to "Doctor's Patients", "/doctors/:id/patients"%><br>
+<%= link_to "Logout", "/doctors/logout"%><br>

@@ -1,2 +1,14 @@
-<h2>Patient's Login</h2><br>
-<%= render 'form' %>
+<h1>Patient's Log In</h1>
+<%= form_tag patients_login_path do %>
+<div class="field">
+<%= label_tag :email %><br>
+<%= text_field_tag :email %>
+</div>
+ <div class="field">
+   <%= label_tag :password %><br>
+<%= password_field_tag :password %>
+</div>
+ <div class="actions">
+  <%= submit_tag "Log In" %>
+</div>
+<% end %>
