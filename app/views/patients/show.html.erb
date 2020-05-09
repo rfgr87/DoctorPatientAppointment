@@ -9,7 +9,7 @@
 <%= link_to "Logout", "/patients/logout"%><br><br>
 
 
-<% if !session[:patient_id].nil? %>
+<% if !session[:patient_id].nil? %><br>
 <%= link_to "Edit Patient's Info", "/patients/:id/edit"%><br>
 <%= link_to "Logout", "/patients/logout"%><br>
 <%end%>

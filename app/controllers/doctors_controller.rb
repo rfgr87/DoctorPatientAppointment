@@ -11,7 +11,7 @@ class DoctorsController < ApplicationController
           session[:doctor_id] = @doctor.id
           render :show
         else
-          redirect_to '/'
+            render :failure
         end
     end
 
@@ -24,10 +24,13 @@ class DoctorsController < ApplicationController
             session[:doctor_id] = @doctor.id
             render :show
         else
-            redirect_to '/'
+            render :failure
         end
     end
     
+    def failure
+    end
+
     def index
         if session[:doctor_id]
           @appointments = Doctor.find(session[:doctor_id]).appointments
@@ -42,9 +45,7 @@ class DoctorsController < ApplicationController
 
     def patients
         @doctor = Doctor.find(doctor_id)
-        @p = Patient.all.select do |patient|
-            patient.appointments.empty?
-            end
+        @p = Patient.all
     end
 
 

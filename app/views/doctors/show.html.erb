@@ -2,10 +2,11 @@
 <p>Appointments:</p>
 <% @doctor.appointments.each do |appointment| %>
   <div><%= appointment.patient.name %><br>
-  <%= link_to appointment.date, appointment_path(appointment.id)%><br>
+  <%= link_to appointment.date, appointment_path(appointment.id)%><br><br>
   </div>
 <% end %><br>
 
+<%= link_to "Search Appointment", "/appointments/search"%><br><br>
 <%= link_to "Edit Doctor's Info", "/doctors/:id/edit"%><br><br>
 <%= link_to "Patients", "/doctors/:id/patients"%><br><br>
 <%= link_to "Logout", "/doctors/logout"%><br>

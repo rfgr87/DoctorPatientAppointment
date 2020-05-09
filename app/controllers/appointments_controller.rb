@@ -4,9 +4,7 @@ class AppointmentsController < ApplicationController
     def new
         @appointment = Appointment.new
         @doctor = Doctor.find(doctor_id)
-        @patients = Patient.all.select do |patient|
-        patient.appointments.empty?
-        end
+        @patients = Patient.all
     end
         
     def create
@@ -23,6 +21,15 @@ class AppointmentsController < ApplicationController
         end
     end
     
+    def search
+    end
+
+    def search_result
+        @date = DateTime.new(params[:date])
+        @appointments = Appointment.search(params[:date])
+        redirect_to :search_results
+    end
+
     def index
         if session[:doctor_id]
             @appointments = Doctor.find(session[:doctor_id]).appointments
@@ -51,7 +58,7 @@ class AppointmentsController < ApplicationController
     end
 
     def create_prescription
-        binding.pry
+        #binding.pry
         @appointment = Appointment.find(params[:id].to_i)
         # @patient = Appointment.find(id: params[:id]).patient 
         # @doctor = Appointment.find(id: params[:id]).doctor

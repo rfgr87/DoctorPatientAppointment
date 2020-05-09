@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   post '/doctors/login', to: 'doctors#create_session'
   get '/doctors/logout', to: 'doctors#logout'
   get '/doctors/:id/patients', to: 'patients#index'
+  get '/doctors/failure', to: 'doctors#failure'
+  get 'appointments/search', to: 'appointments#search'
+  post 'appointments/search', to: 'appointments#search_results'
    
   get '/patients/login', to: 'patients#login'
   post '/patients/login', to: 'patients#create_session'
   get '/patients/logout', to: 'patients#logout'
+  get '/patients/failure', to: 'patients#failure'
 
   get '/appointments/:id/prescription', to: 'appointments#prescription'
   post '/appointments/:id/prescription', to: 'appointments#create_prescription'

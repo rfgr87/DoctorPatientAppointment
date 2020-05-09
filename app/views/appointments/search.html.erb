@@ -1,0 +1,9 @@
+<%= form_tag("/appointments/search") do %>
+<div>
+<%= label_tag :date %><br>
+<%= datetime_field_tag :date%>
+</div>
+ <div class="actions">
+  <%= submit_tag "Search for Appointments" %>
+</div>
+<% end %>

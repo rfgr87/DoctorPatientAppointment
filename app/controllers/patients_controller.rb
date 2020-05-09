@@ -6,13 +6,16 @@ class PatientsController < ApplicationController
     def create
         @patient = Patient.new(patient_params)
         if @patient.save
-            session[:patient_id] = @doctor.id
+            session[:patient_id] = @patient.id
             render :show
         else
-            redirect_to '/'
+            render :failure
         end
     end
-     
+    
+    def failure
+    end
+
     def show
         @patient = Patient.find(params[:id])
     end
