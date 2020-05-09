@@ -8,9 +8,11 @@
 <h3>There are no prescriptions yet</h3>
 <%end%><br>
 
+<%= link_to "Logout", "/patients/logout"%><br>
+
+
 <% if !session[:doctor_id].nil?%>
 <%= link_to "Add Prescription", "/appointments/#{@appointment.id}/prescription"%><br>
 <%= link_to "Doctor's Homepage", "/doctors/show"%><br>
-
-<% end%>
+<% end%><br>
 

@@ -35,6 +35,22 @@ class PatientsController < ApplicationController
             redirect_to '/'
         end
     end
+
+    def facebook_create
+        @patient = Patient.find_or_create_by(uid: auth['uid']) do |u|
+          u.name = auth['info']['name']
+          u.email = auth['info']['email']
+          #u.image = auth['info']['image']
+        end
+     
+        if @patient
+            session[:patient_id] = @patient.id
+            render :show
+        else
+            redirect_to '/'
+        end
+    end
+    
     
     def index
         @doctor = Doctor.find(doctor_id)
@@ -52,4 +68,8 @@ class PatientsController < ApplicationController
         redirect_to '/'
     end
 
+    private
+    def auth
+        request.env['omniauth.auth']
+    end
 end

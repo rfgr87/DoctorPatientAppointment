@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :complains
   root 'application#home'
 
+  get '/auth/facebook/callback' => 'patients#facebook_create'
+  match '/auth/:provider/callback', to: 'patients#facebook_create', via: [:get, :post]
+
   get '/doctors/login', to: 'doctors#login'
   post '/doctors/login', to: 'doctors#create_session'
   get '/doctors/logout', to: 'doctors#logout'
