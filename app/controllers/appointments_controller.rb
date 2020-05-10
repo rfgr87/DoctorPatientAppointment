@@ -25,8 +25,8 @@ class AppointmentsController < ApplicationController
     end
 
     def search_result
-        @date = DateTime.new(params[:date])
-        @appointments = Appointment.search(params[:date])
+        # @date = DateTime.new(params[:date])
+        # @appointments = Appointment.search(params[:date])
         redirect_to :search_results
     end
 

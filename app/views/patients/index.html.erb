@@ -7,7 +7,10 @@
 <h3>Patients without appointment<h3>
 <% @p.each do |patient|%>
 <%= patient.name%><br>
-<%end%><br>
+<%end%><br><br>
 
 <h3>Create an appointment for a patient<h3><br>
-<%= link_to "New Appointment", "/appointments/new"%>
+<%= link_to "New Appointment", "/appointments/new"%><br>
+<% if session[:doctor_id] %>
+<%= link_to "Doctor's Home", "/doctors/show"%>
+<%end%>
