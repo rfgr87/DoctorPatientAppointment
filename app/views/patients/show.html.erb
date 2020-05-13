@@ -1,7 +1,7 @@
 <h1><%= @patient.name %></h1>
 <p>Appointments:</p>
 <% @patient.appointments.each do |appointment| %>
-  <div><%= Doctor.find(appointment.doctor_id).name %><br>
+  <div><%= appointment.doctor.name %><br>
   <%= link_to appointment.date, appointment_path(appointment.id) %><br>
   </div>
 <% end %><br>
@@ -10,7 +10,8 @@
 
 
 <% if !session[:patient_id].nil? %><br>
-<%= link_to "Edit Patient's Info", "/patients/:id/edit"%><br>
+<%= link_to "Edit Patient's Info", edit_patient_path(@patient) %><br>
+
 <%= link_to "Logout", "/patients/logout"%><br>
 <%end%>
 

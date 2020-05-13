@@ -31,11 +31,11 @@ class PatientsController < ApplicationController
 
     def create_session 
         @patient = Patient.find_by(email: params[:email])
-        if @patient.id && @patient.authenticate(params[:password])
+        if @patient && @patient.authenticate(params[:password])
             session[:patient_id] = @patient.id
             render :show
         else
-            render :login
+            render :failure
         end
     end
 

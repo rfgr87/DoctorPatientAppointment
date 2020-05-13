@@ -17,7 +17,7 @@ class AppointmentsController < ApplicationController
         if @appointment.save
             render :show
         else
-            redirect_to '/'
+            render :new
         end
     end
     
