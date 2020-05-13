@@ -11,7 +11,7 @@ class DoctorsController < ApplicationController
           session[:doctor_id] = @doctor.id
           render :show
         else
-            render :failure
+            render :new
         end
     end
 
@@ -20,7 +20,7 @@ class DoctorsController < ApplicationController
 
     def create_session 
         @doctor = Doctor.find_by(email: params[:email])
-        if @doctor.id && @doctor.authenticate(params[:password])
+        if @doctor && @doctor.authenticate(params[:password])
             session[:doctor_id] = @doctor.id
             render :show
         else

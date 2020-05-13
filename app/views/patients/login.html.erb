@@ -1,3 +1,8 @@
+<% if @patient%>
+  <% if @patient.errors.any?%>
+  <h5> <%=@patient.errors.full_messages.to_sentence%></h5>
+  <%end%>
+<%end%>
 <h1>Patient's Log In</h1>
 <%= form_tag patients_login_path do %>
 <div class="field">

@@ -1,12 +1,16 @@
-<% if @patient.errors.any? %>
-  <div id="error_explanation">
-    <h2>There were some errors:</h2>
-    <ul>
-      <% @patient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<% if !@patient.nil?%>
+  <% if @patient.errors.any? %>
+    <div id="error_explanation">
+      <h2>There were some errors:</h2>
+      <ul>
+        <% @patient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <%else%>
+ <h5>There is no Patient user with that information</h5>
+ <%end%> 
 
 <%= link_to "Home", "/"%><br>

@@ -1,3 +1,7 @@
+<% if @appointment.errors.any?%>
+<h5> <%=@appointment.errors.full_messages.to_sentence%></h5>
+<%end%>
+
 <%= form_for @appointment do |f| %>
   <%= f.label :date %><br>
   <%= f.datetime_select :date %><br>

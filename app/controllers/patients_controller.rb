@@ -9,7 +9,7 @@ class PatientsController < ApplicationController
             session[:patient_id] = @patient.id
             render :show
         else
-            render :failure
+            render :new
         end
     end
     
@@ -35,7 +35,7 @@ class PatientsController < ApplicationController
             session[:patient_id] = @patient.id
             render :show
         else
-            redirect_to '/'
+            render :login
         end
     end
 
