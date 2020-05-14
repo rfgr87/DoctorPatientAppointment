@@ -1,5 +1,6 @@
 require 'pry'
 class AppointmentsController < ApplicationController
+    before_action :method_to_be_called, only:
 
     def new
         @appointment = Appointment.new
@@ -10,10 +11,11 @@ class AppointmentsController < ApplicationController
     def create
         @doctor = Doctor.find(doctor_id)
         #@patient = Patient.find(params[:appointment][:patient_id])
-        date = DateTime.new(params[:appointment]["date(1i)"].to_i,params[:appointment]["date(2i)"].to_i,
-        params[:appointment]["date(3i)"].to_i, params[:appointment]["date(4i)"].to_i,
-        params[:appointment]["date(5i)"].to_i)
-        @appointment = Appointment.create(doctor_id: @doctor.id, patient_id: params[:appointment][:patient_id], date: date)
+        # date = DateTime.new(params[:appointment]["date(1i)"].to_i,params[:appointment]["date(2i)"].to_i,
+        # params[:appointment]["date(3i)"].to_i, params[:appointment]["date(4i)"].to_i,
+        # params[:appointment]["date(5i)"].to_i)
+        #@appointment = Appointment.create(doctor_id: @doctor.id, patient_id: params[:appointment][:patient_id], date: date)
+        @appointment = @doctor.appointments.new(appointment_params)
         if @appointment.save
             render :show
         else
@@ -24,10 +26,11 @@ class AppointmentsController < ApplicationController
     def search
     end
 
-    def search_result
-        # @date = DateTime.new(params[:date])
-        # @appointments = Appointment.search(params[:date])
-        redirect_to :search_results
+    def search_results
+        #@date = DateTime.new(params[:date])
+        @appointments = Appointment.search(params[:date])
+        #binding.pry
+        render :search_results
     end
 
     def index
@@ -68,6 +71,14 @@ class AppointmentsController < ApplicationController
     end
         
     private
+
+    #define method_to_be_called
+
+    # def date_params
+    #     params.require(:appointment).permit(params[:appointment]["date(1i)"].to_i,params[:appointment]["date(2i)"].to_i,
+    #     params[:appointment]["date(3i)"].to_i, params[:appointment]["date(4i)"].to_i,
+    #     params[:appointment]["date(5i)"].to_i)
+    # end
         
     def appointment_params
         params.require(:appointment).permit(:date, :doctor_id, :patient_id)

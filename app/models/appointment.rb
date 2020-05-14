@@ -1,12 +1,9 @@
 class Appointment < ApplicationRecord
     belongs_to :doctor
     belongs_to :patient
-    has_many :patients
-    accepts_nested_attributes_for :patients
+
     validates :date, presence: true
     validates :date, uniqueness: true
-    validates :doctor_id, presence: true
-    validates :patient_id, presence: true
 
     attr_accessor :entry_date_formatted
     attr_accessor :entry_date

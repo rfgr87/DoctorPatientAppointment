@@ -4,7 +4,7 @@
 
 <%= form_for @appointment do |f| %>
   <%= f.label :date %><br>
-  <%= f.datetime_select :date %><br>
+  <%= f.datetime_field :date %><br>
   <%= f.label :doctor_name %><br>
   <h3> <%= @doctor.name%><br>
   <%= f.collection_select :patient_id, @patients, :id, :name %><br>

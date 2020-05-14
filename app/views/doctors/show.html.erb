@@ -7,6 +7,6 @@
 <% end %><br>
 
 <%= link_to "Search Appointment", "/appointments/search"%><br><br>
-<%= link_to "Edit Doctor's Info", "/doctors/:id/edit"%><br><br>
+<%= link_to "Edit Doctor's Info", edit_doctor_path(@doctor)%><br><br>
 <%= link_to "Patients", "/doctors/:id/patients"%><br><br>
 <%= link_to "Logout", "/doctors/logout"%><br>
