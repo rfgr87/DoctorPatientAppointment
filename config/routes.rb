@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/doctors/login', to: 'doctors#login'
   post '/doctors/login', to: 'doctors#create_session'
   get '/doctors/logout', to: 'doctors#logout'
-  get '/doctors/:id/patients', to: 'patients#index'
+  # get '/doctors/:id/patients', to: 'patients#index'
   get '/doctors/failure', to: 'doctors#failure'
   get 'appointments/search', to: 'appointments#search'
   post 'appointments/search', to: 'appointments#search_results'

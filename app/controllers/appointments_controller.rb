@@ -1,6 +1,6 @@
 require 'pry'
 class AppointmentsController < ApplicationController
-    before_action :method_to_be_called, only:
+    # before_action :method_to_be_called, only:
 
     def new
         @appointment = Appointment.new
