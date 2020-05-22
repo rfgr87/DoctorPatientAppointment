@@ -43,6 +43,11 @@ class AppointmentsController < ApplicationController
     end
          
     def show
+        if session[:doctor_id]
+            @doctor = Doctor.find(doctor_id)
+        elsif session[:patient_id]
+            @patient = Patient.find(patient_id)
+        end  
         @appointment = Appointment.find(params[:id])
     end
     

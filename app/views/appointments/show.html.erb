@@ -11,6 +11,9 @@
 
 <% if !session[:doctor_id].nil?%>
 <%= link_to "Add Prescription", "/appointments/#{@appointment.id}/prescription"%><br>
-<%= link_to "Doctor's Homepage", "/doctors/show"%><br>
+<%= link_to "Doctor's Homepage", doctor_path(@doctor.id)%><br>
+<% elsif !session[:patient_id].nil? %>
+<%= link_to "Patient's Homepage", patient_path(@patient.id)%><br>
+
 <% end%><br>
 
