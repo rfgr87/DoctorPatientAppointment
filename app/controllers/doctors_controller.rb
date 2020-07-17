@@ -43,11 +43,14 @@ class DoctorsController < ApplicationController
         @doctor = Doctor.find(doctor_id)
     end
 
-    def patients
-        @doctor = Doctor.find(doctor_id)
-        @p = Patient.all
-    end
+    # def patients
+    #     @doctor = Doctor.find(doctor_id)   
+    # end
 
+    def delete
+        @doctor = Doctor.find(doctor_id)
+        @p = @doctor.patients
+    end
 
 
     def update
