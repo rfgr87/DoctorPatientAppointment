@@ -1,0 +1,7 @@
+<h1>Delete Form for Patient <%=@appointment.patient.name%></h1>
+<%= form_tag("/appointments/#{@appointment.id}/delete") do %>
+<%= hidden_field :appointment_id, value: @appointment.id %>
+ <div class="actions">
+  <%= submit_tag "Delete Appointment" %>
+</div>
+<% end %>

@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   get '/appointments/:id/prescription', to: 'appointments#prescription'
   post '/appointments/:id/prescription', to: 'appointments#create_prescription'
-  
+  get '/appointments/:id/delete', to: 'appointments#delete'
+  post '/appointments/:id/delete', to: 'appointments#destroy'
+
   resources :doctors, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :patients, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :appointments, only: [:new, :create, :show, :edit, :update, :destroy]

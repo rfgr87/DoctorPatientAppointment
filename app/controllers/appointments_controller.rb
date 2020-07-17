@@ -51,6 +51,20 @@ class AppointmentsController < ApplicationController
         @appointment = Appointment.find(params[:id])
     end
     
+    def delete
+        @appointment = Appointment.find(params[:id])
+        render :delete_form
+    end
+
+    def destroy
+        if !Appointment.find(params[:id]).nil?  
+            Appointment.find(params[:id]).destroy          
+            redirect_to doctor_path(doctor_id)
+        else
+            redirect_to '/doctors/show'
+        end
+    end
+
     def update
         @appointment = Appointment.find(params[:appointment_id])
         @appointment.update(appointment_params)
