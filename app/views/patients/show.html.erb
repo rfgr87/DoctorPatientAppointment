@@ -2,11 +2,11 @@
 <p>Appointments:</p>
 <% @patient.appointments.each do |appointment| %>
   <div><%= appointment.doctor.name %><br>
-  <%= link_to appointment.date, appointment_path(appointment.id) %><br>
+  <%= link_to appointment.date, patient_appointment_path(@patient.id, appointment.id) %><br>
   </div>
 <% end %><br>
 
-<%= link_to "Logout", "/patients/logout"%><br><br>
+
 
 
 <% if !session[:patient_id].nil? %><br>

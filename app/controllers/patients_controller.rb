@@ -7,7 +7,7 @@ class PatientsController < ApplicationController
         @patient = Patient.new(patient_params)
         if @patient.save
             session[:patient_id] = @patient.id
-            render :show
+            redirect_to patient_path(@patient.id)
         else
             render :new
         end
@@ -33,7 +33,7 @@ class PatientsController < ApplicationController
         @patient = Patient.find_by(email: params[:email])
         if @patient && @patient.authenticate(params[:password])
             session[:patient_id] = @patient.id
-            render :show
+            redirect_to patient_path(@patient.id)
         else
             render :failure
         end

@@ -10,13 +10,9 @@ class AppointmentsController < ApplicationController
         
     def create
         @doctor = Doctor.find(doctor_id)
-        #@patient = Patient.find(params[:appointment][:patient_id])
-        # date = DateTime.new(params[:appointment]["date(1i)"].to_i,params[:appointment]["date(2i)"].to_i,
-        # params[:appointment]["date(3i)"].to_i, params[:appointment]["date(4i)"].to_i,
-        # params[:appointment]["date(5i)"].to_i)
-        #@appointment = Appointment.create(doctor_id: @doctor.id, patient_id: params[:appointment][:patient_id], date: date)
         @appointment = @doctor.appointments.new(appointment_params)
-        if @appointment.save
+        if @appointment.date
+            @appointment.save
             render :show
         else
             render :new

@@ -25,16 +25,16 @@ Rails.application.routes.draw do
   resources :patients, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :appointments, only: [:new, :create, :show, :edit, :update, :destroy]
 
-  # resources :appointments
-  # resources :patients
-  # resources :doctors
-
   resources :doctors, only: [:show] do
     resources :appointments, only: [:new, :show, :index]
   end
 
   resources :doctors, only: [:show] do
     resources :patients, only: [:index, :show]
+  end
+
+  resources :patients, only: [:show] do
+    resources :appointments, only: [:show, :index]
   end
 
   

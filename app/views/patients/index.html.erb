@@ -10,7 +10,7 @@
 <%end%><br><br>
 
 <h3>Create an appointment for a patient<h3><br>
-<%= link_to "New Appointment", "/appointments/new"%><br>
+<%= link_to "New Appointment", new_appointment_path%><br>
 <% if session[:doctor_id] %>
 <%= link_to "Doctor's Home", "/doctors/show"%>
 <%end%>

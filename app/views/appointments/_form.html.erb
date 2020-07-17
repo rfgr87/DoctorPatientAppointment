@@ -8,6 +8,5 @@
   <%= f.label :doctor_name %><br>
   <h3> <%= @doctor.name%><br>
   <%= f.collection_select :patient_id, @patients, :id, :name %><br>
-  <%# <%= f.collection_check_boxes :patient, @patients, :id, :name %><br>
   <%= f.submit %>
 <% end %>
