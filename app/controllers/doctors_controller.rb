@@ -9,7 +9,7 @@ class DoctorsController < ApplicationController
         @doctor = Doctor.create(doctor_params)
         if @doctor.save
           session[:doctor_id] = @doctor.id
-          render :show
+          redirect_to doctor_path(@doctor.id)
         else
             render :new
         end
@@ -22,7 +22,7 @@ class DoctorsController < ApplicationController
         @doctor = Doctor.find_by(email: params[:email])
         if @doctor && @doctor.authenticate(params[:password])
             session[:doctor_id] = @doctor.id
-            render :show
+            redirect_to doctor_path(@doctor.id)
         else
             render :failure
         end
