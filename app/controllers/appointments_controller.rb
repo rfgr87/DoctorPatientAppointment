@@ -11,11 +11,10 @@ class AppointmentsController < ApplicationController
     def create
         @doctor = Doctor.find(doctor_id)
         @appointment = @doctor.appointments.new(appointment_params)
-        if @appointment.date
-            @appointment.save
-            render :show
+        if @appointment.save && @appointment.date > DateTime.now          
+            redirect_to doctor_appointment_path(@doctor.id, @appointment.id)
         else
-            render :new
+            render :failure
         end
     end
     

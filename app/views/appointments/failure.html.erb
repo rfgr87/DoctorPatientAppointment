@@ -1,0 +1,15 @@
+<% if !@appointment.nil?%>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2>There were some errors:</h2>
+      <ul>
+        <% @appointment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%else%>
+  <h5>There is was an error with that information<h5>
+<%end%>
+<%= link_to "Create Appointment", new_doctor_appointment_path(@appointment.doctor_id, @appointment.id)%><br>

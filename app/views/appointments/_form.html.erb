@@ -6,7 +6,7 @@
   <%= f.label :date %><br>
   <%= f.datetime_field :date %><br>
   <%= f.label :doctor_name %><br>
-  <h3> <%= @doctor.name%><br>
+  <%= @doctor.name%><br>
   <%= f.collection_select :patient_id, @patients, :id, :name %><br>
   <%= f.submit %>
 <% end %>

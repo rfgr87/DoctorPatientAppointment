@@ -1,6 +1,6 @@
 <h3> <%= @doctor.name%>'s Patients<br>
 <% @doctor.patients.each do |patient| %>
-  <div><%= link_to patient.name, patient_path(patient.id) %><br>
+  <div><%= link_to patient.name, doctor_patient_path(@doctor.id, patient.id) %><br>
   </div>
 <% end %><br>
 
@@ -10,7 +10,7 @@
 <%end%><br><br>
 
 <h3>Create an appointment for a patient<h3><br>
-<%= link_to "New Appointment", new_appointment_path%><br>
+<%= link_to "New Appointment", new_doctor_appointment_path(@doctor.id)%><br>
 <% if session[:doctor_id] %>
 <%= link_to "Doctor's Home", "/doctors/show"%>
 <%end%>
