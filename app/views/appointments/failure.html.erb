@@ -10,6 +10,6 @@
     </div>
   <% end %>
 <%else%>
-  <h5>There is was an error with that information<h5>
+  <h5>There was an error with that information<h5>
 <%end%>
-<%= link_to "Create Appointment", new_doctor_appointment_path(@appointment.doctor_id, @appointment.id)%><br>
+<%= link_to "Doctor's Page", doctor_path(session[:doctor_id])%><br>

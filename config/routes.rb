@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'appointments/search', to: 'appointments#search'
   post 'appointments/search', to: 'appointments#search_results'
+  get 'appointments/failure', to: 'appointments#failure'
    
   get '/patients/login', to: 'patients#login'
   post '/patients/login', to: 'patients#create_session'
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
   resources :appointments, only: [:new, :create, :show, :edit, :update, :destroy]
 
   resources :doctors, only: [:show] do
-    resources :appointments, only: [:new, :show, :index]
+    resources :appointments, only: [:show, :index]
   end
 
   resources :doctors, only: [:show] do
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
   end
 
   resources :patients, only: [:show] do
-    resources :appointments, only: [:show, :index]
+    resources :appointments, only: [:show, :index, :new]
   end
 
   

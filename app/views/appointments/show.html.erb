@@ -9,12 +9,13 @@
 <%end%><br>
 
 
-<% if !session[:doctor_id].nil?%>
+<% if @appointment.doctor.id == session[:doctor_id]%>
 <%= link_to "Add Prescription", "/appointments/#{@appointment.id}/prescription"%><br>
 <%= button_to "Delete Appointment", "/appointments/#{@appointment.id}", method: "delete" %><br>
 <%= link_to "Doctor's Homepage", doctor_path(@doctor.id)%><br>
 <% elsif !session[:patient_id].nil? %>
 <%= link_to "Patient's Homepage", patient_path(@patient.id)%><br>
-
+<% elsif @appointment.doctor.id != session[:doctor_id] && !session[:doctor_id].nil? %><br>
+<%= link_to "Doctor's Homepage", doctor_path(session[:doctor_id])%><br>
 <% end%><br>
 

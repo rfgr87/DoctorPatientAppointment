@@ -60,6 +60,7 @@ class PatientsController < ApplicationController
         @p = Patient.all.select do |patient|
             patient.appointments.empty?
         end
+        @all_patients = Patient.all;
     end
 
     def edit

@@ -5,8 +5,9 @@
 <%= form_for @appointment do |f| %>
   <%= f.label :date %><br>
   <%= f.datetime_field :date %><br>
-  <%= f.label :doctor_name %><br>
+  <% f.label :doctor_name %><br>
   <%= @doctor.name%><br>
-  <%= f.collection_select :patient_id, @patients, :id, :name %><br>
+  <%= f.label :patient_id %><br>
+  <%= f.text_field :patient_id, :value=> @patient.id, :readonly=>true %><br>
   <%= f.submit %>
 <% end %>

@@ -5,16 +5,16 @@ class AppointmentsController < ApplicationController
     def new
         @appointment = Appointment.new
         @doctor = Doctor.find(doctor_id)
-        @patients = Patient.all
+        @patient = Patient.find(params[:patient_id])
     end
         
     def create
         @doctor = Doctor.find(doctor_id)
         @appointment = @doctor.appointments.new(appointment_params)
-        if @appointment.save && @appointment.date > DateTime.now          
-            redirect_to doctor_appointment_path(@doctor.id, @appointment.id)
+        if @appointment.save && @appointment.date > DateTime.now #&& !Doctor.find_by_id(params[:doctor_id]).nil? && params[:doctor_id] == doctor_id     
+            redirect_to doctor_appointment_path(doctor_id, @appointment.id)
         else
-            render :failure
+            redirect_to appointments_failure_path(@appointment.id)
         end
     end
     

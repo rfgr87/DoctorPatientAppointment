@@ -10,7 +10,10 @@
 <%end%><br><br>
 
 <h3>Create an appointment for a patient<h3><br>
-<%= link_to "New Appointment", new_doctor_appointment_path(@doctor.id)%><br>
+<% @all_patients.each do |patient| %>
+<%= link_to "New Appointment for #{patient.name}", new_patient_appointment_path(patient.id)%><br>
+<%end%><br>
+
 <% if session[:doctor_id] %>
 <%= link_to "Doctor's Home", "/doctors/show"%>
 <%end%>
