@@ -3,9 +3,13 @@ class AppointmentsController < ApplicationController
     # before_action :method_to_be_called, only:
 
     def new
+        if session[:doctor_id].nil?
+            render appointments_failure_path
+        else
         @appointment = Appointment.new
         @doctor = Doctor.find(doctor_id)
         @patient = Patient.find(params[:patient_id])
+        end
     end
         
     def create
@@ -38,12 +42,15 @@ class AppointmentsController < ApplicationController
     end
          
     def show
-        if session[:doctor_id]
+        if !doctor_id.nil?
             @doctor = Doctor.find(doctor_id)
+            @appointment = Appointment.find(params[:id])
         elsif session[:patient_id]
             @patient = Patient.find(patient_id)
+            @appointment = Appointment.find(params[:id])
+        else
+            render appointments_failure_path
         end  
-        @appointment = Appointment.find(params[:id])
     end
 
     def destroy

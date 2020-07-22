@@ -40,7 +40,11 @@ class DoctorsController < ApplicationController
     end
      
     def show
+        if session[:doctor_id].nil?
+            render doctors_failure_path
+        else
         @doctor = Doctor.find(doctor_id)
+        end
     end
 
     # def patients
@@ -60,7 +64,11 @@ class DoctorsController < ApplicationController
     end
 
     def edit
-        @doctor = Doctor.find(doctor_id)
+        if !session[:doctor_id].nil?
+            @doctor = Patient.find(doctor_id)
+        else
+            render doctors_failure_path
+        end
     end
     
     def logout

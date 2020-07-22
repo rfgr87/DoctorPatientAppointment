@@ -12,4 +12,8 @@
 <%else%>
   <h5>There was an error with that information<h5>
 <%end%>
+<% if !session[:doctor_id].nil? %>
 <%= link_to "Doctor's Page", doctor_path(session[:doctor_id])%><br>
+<% end %>
+<%= link_to "Home Page", "/"%><br>
+

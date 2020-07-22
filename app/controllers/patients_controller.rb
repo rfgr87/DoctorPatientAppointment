@@ -17,7 +17,11 @@ class PatientsController < ApplicationController
     end
 
     def show
-        @patient = Patient.find(params[:id])
+        if !session[:patient_id].nil? || !session[:doctor_id].nil?
+            @patient = Patient.find(params[:patient_id])
+        else
+            render patients_failure_path
+        end
     end
     
     def update
@@ -64,7 +68,11 @@ class PatientsController < ApplicationController
     end
 
     def edit
-        @patient = Patient.find(patient_id)
+        if !session[:patient_id].nil?
+            @patient = Patient.find(patient_id)
+        else
+            render patients_failure_path
+        end
     end
 
     def logout
