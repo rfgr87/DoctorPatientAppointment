@@ -2,12 +2,15 @@
 <h5> <%=@appointment.errors.full_messages.to_sentence%></h5>
 <%end%><br>
 
-<%= form_for @appointment do |f| %>
+<%= form_for [@patient, @appointment] do |f| %>
   <%= f.label :date %><br>
   <%= f.datetime_field :date %><br>
   <% f.label :doctor_name %><br>
-  <%= @doctor.name%><br>
-  <%= f.label :patient_id %><br>
-  <%= f.text_field :patient_id, :value=> @patient.id, :readonly=>true %><br>
+  <%= current_doctor.name%><br>
+  <% if @patient %>
+  <%= f.hidden_field :patient_id, :value=> @patient.id, :readonly=>true %><br>
+  <% else %>
+  <%= f.collection_select :patient_id, Patient.all, :id, :name, prompt: true %>
+  <% end %>
   <%= f.submit %>
 <% end %>

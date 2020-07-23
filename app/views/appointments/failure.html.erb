@@ -11,6 +11,7 @@
   <% end %>
 <%else%>
   <h5>There was an error with that information<h5>
+  <h5>The date selected should be after this current time.<h5>
 <%end%>
 <% if !session[:doctor_id].nil? %>
 <%= link_to "Doctor's Page", doctor_path(session[:doctor_id])%><br>

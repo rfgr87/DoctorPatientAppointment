@@ -18,7 +18,7 @@ class PatientsController < ApplicationController
 
     def show
         if !session[:patient_id].nil? || !session[:doctor_id].nil?
-            @patient = Patient.find(params[:patient_id])
+            @patient = Patient.find_by(params[:patient_id])
         else
             render patients_failure_path
         end

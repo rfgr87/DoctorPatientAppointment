@@ -60,12 +60,14 @@ class DoctorsController < ApplicationController
     def update
         @doctor = Doctor.find(params[:id])
         @doctor.update(doctor_params)
+        # if it updates then redirect to the show page, 
+        # if not re render the edit page
         render :show
     end
 
     def edit
         if !session[:doctor_id].nil?
-            @doctor = Patient.find(doctor_id)
+            @doctor = Doctor.find(doctor_id)
         else
             render doctors_failure_path
         end

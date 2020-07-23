@@ -3,22 +3,21 @@ class AppointmentsController < ApplicationController
     # before_action :method_to_be_called, only:
 
     def new
-        if session[:doctor_id].nil?
-            render appointments_failure_path
-        else
         @appointment = Appointment.new
-        @doctor = Doctor.find(doctor_id)
-        @patient = Patient.find(params[:patient_id])
-        end
+        if params[:patient_id]
+            @patient = Patient.find(params[:patient_id])
+        end  
     end
         
     def create
-        @doctor = Doctor.find(doctor_id)
-        @appointment = @doctor.appointments.new(appointment_params)
+        @appointment = current_doctor.appointments.new(appointment_params)
         if @appointment.save && @appointment.date > DateTime.now #&& !Doctor.find_by_id(params[:doctor_id]).nil? && params[:doctor_id] == doctor_id     
             redirect_to doctor_appointment_path(doctor_id, @appointment.id)
         else
-            redirect_to appointments_failure_path(@appointment.id)
+            if params[:patient_id]
+                @patient = Patient.find(params[:patient_id])
+            end
+            render :new
         end
     end
     
