@@ -1,7 +1,7 @@
 <h3>Appointment Info<h3>
-<%= @appointment.date.strftime '%d.%m.%Y %H:%M:%S'%><br>
+<%= @appointment.date.strftime '%d.%m.%Y %H:%M:%S'%><br><br>
 <%= @appointment.doctor.name%><br>
-<%= @appointment.patient.name%><br>
+<%= @appointment.patient.name%><br><br>
 <% if @appointment.doctor_prescription%>
 <%= @appointment.doctor_prescription%>
 <%else%>
@@ -10,12 +10,7 @@
 
 
 <% if @appointment.doctor.id == session[:doctor_id]%>
-<%= link_to "Add Prescription", "/appointments/#{@appointment.id}/prescription"%><br>
+<%= link_to "Add Prescription", "/appointments/#{@appointment.id}/prescription"%><br><br>
 <%= button_to "Delete Appointment", "/appointments/#{@appointment.id}", method: "delete" %><br>
-<%= link_to "Doctor's Homepage", doctor_path(@doctor.id)%><br>
-<% elsif !session[:patient_id].nil? %>
-<%= link_to "Patient's Homepage", patient_path(@patient.id)%><br>
-<% elsif @appointment.doctor.id != session[:doctor_id] && !session[:doctor_id].nil? %><br>
-<%= link_to "Doctor's Homepage", doctor_path(session[:doctor_id])%><br>
-<% end%><br>
+<%end%>
 

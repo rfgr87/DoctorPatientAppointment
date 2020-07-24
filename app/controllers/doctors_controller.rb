@@ -47,17 +47,12 @@ class DoctorsController < ApplicationController
         if session[:doctor_id].nil?
             render doctors_failure_path
         else
-        @doctor = Doctor.find(doctor_id)
+        @doctor = Doctor.find(session[:doctor_id])
         end
     end
 
-    # def patients
-    #     @doctor = Doctor.find(doctor_id)   
-    # end
-
     def delete
-        @doctor = Doctor.find(doctor_id)
-        @p = @doctor.patients
+        @p = current_doctor.patients
     end
 
 
@@ -71,7 +66,7 @@ class DoctorsController < ApplicationController
 
     def edit
         if !session[:doctor_id].nil?
-            @doctor = Doctor.find(doctor_id)
+            @doctor = current_doctor
         else
             render doctors_failure_path
         end

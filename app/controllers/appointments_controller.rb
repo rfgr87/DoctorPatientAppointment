@@ -85,7 +85,7 @@ class AppointmentsController < ApplicationController
         # @doctor = Appointment.find(id: params[:id]).doctor
         @appointment.doctor_prescription = params[:content]
         @appointment.save
-        render :show
+        redirect_to appointment_path(@appointment.id)
     end
         
     private
