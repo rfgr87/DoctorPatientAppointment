@@ -1,6 +1,10 @@
 require 'pry'
 
 class DoctorsController < ApplicationController
+    before_action :require_doctor_login
+    skip_before_action :require_doctor_login, only: [:login, :create_session]
+
+    
     def new
         @doctor = Doctor.new
     end

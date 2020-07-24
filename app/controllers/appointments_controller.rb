@@ -11,12 +11,15 @@ class AppointmentsController < ApplicationController
         
     def create
         @appointment = current_doctor.appointments.new(appointment_params)
-        if @appointment.save && @appointment.date > DateTime.now #&& !Doctor.find_by_id(params[:doctor_id]).nil? && params[:doctor_id] == doctor_id     
-            redirect_to doctor_appointment_path(doctor_id, @appointment.id)
+        if @appointment.date > DateTime.now 
+            if @appointment.save 
+                redirect_to doctor_appointment_path(doctor_id, @appointment.id)
+            end
         else
             if params[:patient_id]
                 @patient = Patient.find(params[:patient_id])
             end
+            @message = "Date has to be in the future."
             render :new
         end
     end

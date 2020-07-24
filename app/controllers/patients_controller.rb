@@ -1,4 +1,9 @@
 class PatientsController < ApplicationController
+    before_action :require_patient_or_doctor_login
+    skip_before_action :require_patient_or_doctor_login, only: [:login, :create_session, :create, :new]
+
+
+
     def new
         @patient = Patient.new
     end
@@ -17,11 +22,12 @@ class PatientsController < ApplicationController
     end
 
     def show
-        if !session[:patient_id].nil? || !session[:doctor_id].nil?
-            @patient = Patient.find_by(params[:patient_id])
-        else
-            render patients_failure_path
+        if session[:patient_id]
+            @patient = Patient.find(session[:patient_id])
+        elsif session[:doctor_id]
+            @patient = Patient.find(params[:id])
         end
+
     end
     
     def update

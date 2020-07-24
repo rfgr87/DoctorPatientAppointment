@@ -11,7 +11,13 @@
 
   <body>
     <div>
-    <%= link_to 'Home', "/" %>
+    <% if !session[:doctor_id].nil? %>
+    <%= link_to "Doctor's Page", "/doctors/show" %><br>
+    <%= link_to 'Logout', "/doctors/logout" %>
+    <% elsif !session[:patient_id].nil? %>
+    <%= link_to "Patient's Page", "/patients/show" %><br>
+    <%= link_to 'Logout', "/patients/logout" %>
+    <% end %>
     </div>
     <%= yield %>
   </body>

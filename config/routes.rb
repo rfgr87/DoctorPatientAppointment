@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   resources :doctors, only: [:show] do
-    resources :patients, only: [:index, :show]
+    resources :patients, only: [:show, :index]
   end
 
   resources :patients, only: [:show] do

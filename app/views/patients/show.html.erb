@@ -12,9 +12,4 @@
 <% if !session[:patient_id].nil? %><br>
 <%= link_to "Edit Patient's Info", edit_patient_path(@patient) %><br>
 
-<%= link_to "Logout", "/patients/logout"%><br>
 <%end%>
-
-<% if !session[:doctor_id].nil?%>
-<%= link_to "Back to Home Page", "/doctors/show"%>
-<% end%>

@@ -16,11 +16,21 @@ class ApplicationController < ActionController::Base
         session[:doctor_id]
     end
 
+    def require_doctor_login
+        return head(:forbidden) unless session.include? :doctor_id
+    end
+
     def patient_params
         params.require(:patient).permit(:name, :email, :password, :password_confirmation)
     end
 
     def patient_id
         session[:patient_id]
+    end
+
+    def require_patient_or_doctor_login
+        if session[:patient_id].nil? && session[:doctor_id].nil?
+            return head(:forbidden)
+        end
     end
 end
