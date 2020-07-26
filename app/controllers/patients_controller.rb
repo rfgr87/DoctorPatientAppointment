@@ -37,6 +37,7 @@ class PatientsController < ApplicationController
     end
     
     def login
+        @flag = false
     end
 
     def create_session 
@@ -45,7 +46,8 @@ class PatientsController < ApplicationController
             session[:patient_id] = @patient.id
             redirect_to patient_path(@patient.id)
         else
-            render :failure
+            @flag = true
+            render :login
         end
     end
 
@@ -74,8 +76,8 @@ class PatientsController < ApplicationController
     end
 
     def edit
-        if !session[:patient_id].nil?
-            @patient = Patient.find(patient_id)
+        if current_patient
+            @patient = current_patient
         else
             render patients_failure_path
         end

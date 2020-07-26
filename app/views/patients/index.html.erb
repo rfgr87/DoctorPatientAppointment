@@ -13,7 +13,3 @@
 <% @all_patients.each do |patient| %>
 <%= link_to "New Appointment for #{patient.name}", new_patient_appointment_path(patient.id)%><br>
 <%end%><br>
-
-<% if session[:doctor_id] %>
-<%= link_to "Doctor's Home", "/doctors/show"%>
-<%end%>

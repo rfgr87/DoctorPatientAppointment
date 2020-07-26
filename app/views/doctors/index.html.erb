@@ -1,6 +1,6 @@
 <p>Appointments:</p>
 <% @doctor.appointments.each do |appointment| %>
-  <div><%= Patient.find(appointment.patient_id)%><br>
-  <%= link_to appointment.date, doctor_appointment_path(appointment.id) %><br>
+  <div><%= appointment.patient%><br>
+  <%= link_to appointment.date, doctor_appointment_path(@doctor.id, appointment.id) %><br>
   </div>
 <% end %>

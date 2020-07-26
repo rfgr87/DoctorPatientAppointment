@@ -1,7 +1,5 @@
-<% if @doctor%>
-  <% if @doctor.errors.any?%>
-  <h5> <%=@doctor.errors.full_messages.to_sentence%></h5>
-  <%end%>
+<% if @flag %>
+  <%= "There was a problem with that given information. Please try again" %>
 <%end%>
 
 <h1>Doctor's Log In</h1>

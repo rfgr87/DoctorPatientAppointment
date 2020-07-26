@@ -20,6 +20,7 @@ class DoctorsController < ApplicationController
     end
 
     def login
+        @flag = false
     end
 
     def create_session 
@@ -28,7 +29,8 @@ class DoctorsController < ApplicationController
             session[:doctor_id] = @doctor.id
             redirect_to doctor_path(@doctor.id)
         else
-            render :failure
+            @flag = true
+            render :login
         end
     end
     
