@@ -1,6 +1,7 @@
+require 'pry'
 class PatientsController < ApplicationController
     before_action :require_patient_or_doctor_login
-    skip_before_action :require_patient_or_doctor_login, only: [:login, :create_session, :create, :new]
+    skip_before_action :require_patient_or_doctor_login, only: [:login, :create_session, :create, :new, :facebook_create]
 
 
 
@@ -55,12 +56,13 @@ class PatientsController < ApplicationController
         @patient = Patient.find_or_create_by(uid: auth['uid']) do |u|
           u.name = auth['info']['name']
           u.email = auth['info']['email']
+          u.password_digest = SecureRandom.hex(15)
           #u.image = auth['info']['image']
         end
      
         if @patient
             session[:patient_id] = @patient.id
-            render :show
+            redirect_to patient_path(@patient.id)
         else
             redirect_to '/'
         end
