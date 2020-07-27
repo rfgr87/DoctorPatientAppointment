@@ -2,7 +2,7 @@ require 'pry'
 
 class DoctorsController < ApplicationController
     before_action :require_doctor_login
-    skip_before_action :require_doctor_login, only: [:login, :create_session]
+    skip_before_action :require_doctor_login, only: [:login, :create_session, :new, :create]
 
     
     def new
@@ -15,6 +15,8 @@ class DoctorsController < ApplicationController
           session[:doctor_id] = @doctor.id
           redirect_to doctor_path(@doctor.id)
         else
+            @message = "There was something wrong with the information given.
+            Please try again."
             render :new
         end
     end

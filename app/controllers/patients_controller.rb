@@ -15,6 +15,8 @@ class PatientsController < ApplicationController
             session[:patient_id] = @patient.id
             redirect_to patient_path(@patient.id)
         else
+            @message = "There was something wrong with the information given. 
+            Please try again."
             render :new
         end
     end
@@ -56,7 +58,7 @@ class PatientsController < ApplicationController
         @patient = Patient.find_or_create_by(uid: auth['uid']) do |u|
           u.name = auth['info']['name']
           u.email = auth['info']['email']
-          u.password_digest = SecureRandom.hex(15)
+          u.password= SecureRandom.hex(15)
           #u.image = auth['info']['image']
         end
      

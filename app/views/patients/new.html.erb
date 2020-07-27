@@ -1,4 +1,11 @@
 <h2>Patient Sing Up</h2><br>
+
+<h5>
+<% if !@message.nil? %>
+    <%= @message %>
+    <%end%>
+</h5>
+
 <%= render 'form' %><br>
 
 <%= link_to "Home Page", "/"%>

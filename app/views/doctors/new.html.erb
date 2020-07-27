@@ -1,2 +1,9 @@
 <h2>Doctor Sing Up</h2><br>
-<%= render 'form' %>
+<h5>
+<% if !@message.nil? %>
+    <%= @message %>
+    <%end%>
+</h5>
+<%= render 'form' %><br>
+
+<%= link_to "Home Page", "/"%>
