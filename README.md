@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Ruby version used with this app is "2.6.1"
 
-Things you may want to cover:
+Make sure to have VScode.
 
-* Ruby version
+First clone the git directory in a file in your computer. 
+Use the command: git clone git@github.com:rfgr87/DoctorPatientAppointment.git.
 
-* System dependencies
+After this previews step make sure the current directory is the app.
+You can do that with: cd "AppName".
 
-* Configuration
+Then open the app typing: code . , or just opening the file.
 
-* Database creation
+The code migth need to migrate so make sure if needed to run: rake db migrate.
 
-* Database initialization
+If not needed to migrate or done the previews step run: rails s.
 
-* How to run the test suite
+Then navigate to the browser and type: http://localhost:3000/.
 
-* Services (job queues, cache servers, search engines, etc.)
+The app should be running at this point.
 
-* Deployment instructions
+Enjoy!
 
-* ...
+
