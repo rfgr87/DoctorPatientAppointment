@@ -1,6 +1,14 @@
-<p>Appointments:</p>
-<% @doctor.appointments.each do |appointment| %>
-  <div><%= appointment.patient%><br>
-  <%= link_to appointment.date, doctor_appointment_path(@doctor.id, appointment.id) %><br>
+<%= form_tag("/doctors/search_results") do %>
+  <div>
+  <%= label_tag :name %><br>
+  <%= text_field_tag :name%>
+  </div>
+   <div class="actions">
+    <%= submit_tag "Search for Doctors" %>
+  </div>
+  <% end %><br>
+
+<% @doctors.each do |doctor| %>
+  <div><%= doctor.name%><br>
   </div>
 <% end %>

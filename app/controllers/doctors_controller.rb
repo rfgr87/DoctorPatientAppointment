@@ -40,19 +40,21 @@ class DoctorsController < ApplicationController
     end
 
     def index
-        if session[:doctor_id]
-          @appointments = Doctor.find(session[:doctor_id]).appointments
-        else
-          redirect_to '/'
-        end
+        @doctors = Doctor.all
     end
      
-    def show
-        if session[:doctor_id].nil?
-            render doctors_failure_path
-        else
-        @doctor = Doctor.find(session[:doctor_id])
-        end
+    def show      
+        @doctor = current_doctor
+    end
+
+    def search
+    end
+
+    def search_results
+        #@date = DateTime.new(params[:date])
+        @doctors = Doctor.search(params[:name])
+        #binding.pry
+        render :search_results
     end
 
     def delete
@@ -69,11 +71,7 @@ class DoctorsController < ApplicationController
     end
 
     def edit
-        if !session[:doctor_id].nil?
-            @doctor = current_doctor
-        else
-            render doctors_failure_path
-        end
+        @doctor = current_doctor
     end
     
     def logout

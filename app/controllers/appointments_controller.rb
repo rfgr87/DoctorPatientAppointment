@@ -28,9 +28,7 @@ class AppointmentsController < ApplicationController
     end
 
     def search_results
-        #@date = DateTime.new(params[:date])
         @appointments = Appointment.search(params[:date])
-        #binding.pry
         render :search_results
     end
 

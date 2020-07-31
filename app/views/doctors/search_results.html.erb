@@ -1,0 +1,7 @@
+<%= @doctors.name %>
+
+<% @doctors.each do |doctor| %>
+    <%=doctor.name%><br>
+    <%end%><br>
+    <%= link_to "Doctor's Page", doctor_path(current_doctor.id)%><br>
+    <%= link_to "All Doctors", doctors_path%>

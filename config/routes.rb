@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/doctors/login', to: 'doctors#create_session'
   get '/doctors/logout', to: 'doctors#logout'
   get '/doctors/failure', to: 'doctors#failure'
+  post '/doctors/search_results', to: 'doctors#search_results'
 
   get 'appointments/search', to: 'appointments#search'
   post 'appointments/search', to: 'appointments#search_results'
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
   get '/appointments/:id/prescription', to: 'appointments#prescription'
   post '/appointments/:id/prescription', to: 'appointments#create_prescription'
 
-  resources :doctors, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :doctors
   resources :patients, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :appointments, only: [:new, :create, :show, :edit, :update, :destroy]
 

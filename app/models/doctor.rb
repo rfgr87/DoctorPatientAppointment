@@ -6,4 +6,6 @@ class Doctor < ApplicationRecord
     validates :name, :email, presence: true
     #validates :email, presence: true
     validates :email, uniqueness: true
+
+    scope :search, ->(name) { where("name = ?", name)}
 end
